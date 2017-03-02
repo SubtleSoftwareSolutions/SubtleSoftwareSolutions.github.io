@@ -51,22 +51,26 @@ $(document).ready(function () {
     }
     View.prototype = {
         createOneCard: function(onePartData) {
+            console.log('dodaje dla: ' + onePartData.owner.login);
             var htmlCard = '<div class="card"><div class="card-block"><a href="' + onePartData.url + '" target="_blank"><h4 class="card-title">' + onePartData.name + '</h4></a><h6 class="card-subtitle mb-2 text-muted">author: ' + onePartData.owner.login + '</h6><p class="card-text">' + onePartData.description + '</p></div></div>';
             return htmlCard;
         },
         createCards: function(json) {
-            var that = this;
-            var tmp = '';
-            var maxCount = 3;
-            var len = parseInt(json.length);
-            var result  = 0;
+            var that = this,
+                tmp = '',
+                maxCount = 3,
+                len = parseInt(json.length) + 1;
 
-            for(var i = 1; i < len + 1; i++) {
+            for(var i = 1; i < len; i++) {
                 tmp += that.createOneCard(json[i - 1]);
                 if(i % maxCount === 0) {
                     addGroup(tmp);
                     tmp = '';
-                    console.log('Zerowanko: ' + tmp);
+                }
+                else if(len - i < maxCount) {
+                    if(i === len - 1) {
+                        addGroup(tmp);
+                    }
                 }
             }
 
@@ -83,6 +87,7 @@ $(document).ready(function () {
     MODEL = new Model();
     VIEW = new View($('#card-parent'));
     CONTROL = new Control(MODEL, VIEW);
+    CONTROL.createAllCards('SubtleSoftwareSolutions');
+    CONTROL.createAllCards('roughtomato');
     CONTROL.createAllCards('ndv66');
-
 });
