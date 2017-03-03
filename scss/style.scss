@@ -1,13 +1,16 @@
 $padding-first: 300px;
 $about-i-size: 80px;
 $about-font-size: 18px;
+$space-between-sections: 180px;
+$bs-gray: #373a3c;
 
 html, body {
     width: 100%;
     height: 100%;
-    font-family: 'Roboto Slab', serif;
-    /*font-family: 'Libre Franklin', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+    font-size: $about-font-size;
 }
+
 /*HELPERS*/
 .no-break {
     white-space: nowrap;
@@ -19,7 +22,6 @@ no-padding {
     padding: 0 !important;
 }
 
-
 /*NAVBAR*/
 .navbar {
     button {
@@ -30,13 +32,29 @@ no-padding {
 }
 
 /*MAIN*/
+h1 {
+    font-size: 420%;
+}
+small {
+    font-size: 120%;
+    font-style: italic;
+    font-weight: 100;
+}
+a {
+    &:active,
+    &:visited,
+    &:link,
+    &:focus,
+    &:hover {
+        text-decoration: none !important;
+    }
+}
 body {
     background-image: url('../assets/trees.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-
 main {
     #first-section {
         padding-top: $padding-first;
@@ -54,21 +72,48 @@ main {
     }
 
     #projects {
-        $margins: 100px;
+        $margins: $space-between-sections;
         margin-top: $margins;
         margin-bottom: $margins;
         h2 {
 
         }
-        a {
-            text-decoration: none;
-        }
+    }
+    .author {
+        $padding: 40px;
+        padding-top: $padding;
+        padding-bottom: $padding;
+        border-bottom: 1px solid #fff;
+    }
+
+    .card-group {
+        $margin: 20px;
+        margin-top: $margin;
+        margin-top: $margin;
+    }
+
+    #contact {
+        $margins: $space-between-sections;
+        margin-top: $margins;
+        margin-bottom: $margins;
+        line-height: 180%;
     }
 }
 
+/*FOOTER*/
 footer {
     $footer-padding: 15px;
     background-color: #000C17;
     padding-top: $footer-padding;
     padding-bottom: $footer-padding;
+    a {
+        color: $bs-gray;
+    }
+}
+
+/*MEDIA*/
+@media screen and (max-width: 576px) {
+    .card {
+        width: 100%;
+    }
 }
