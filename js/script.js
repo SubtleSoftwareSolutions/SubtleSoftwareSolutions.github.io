@@ -31,6 +31,9 @@ $(document).ready(function () {
         this.cardParent = cardParent;
     }
     View.prototype = {
+        showError: function() {
+            $('#api-error').removeClass('hidden-xs-up');
+        },
         createOneCard: function(onePartData) {
             var htmlCard = '<div class="card"><div class="card-block"><a href="' + onePartData.html_url + '" target="_blank"><h4 class="card-title">' + onePartData.name + '</h4></a><p class="card-text">' + onePartData.description + '</p></div></div>';
             return htmlCard;
@@ -55,7 +58,6 @@ $(document).ready(function () {
                 }
             }
             (function bindCardsToHTML(author) {
-                console.log('dzialam ' + result);
                 var str = '<h5 class="author text-white">' + author + '</h5>' + result;
                 that.cardParent.append(str);
             })(json[0].owner.login);
@@ -66,7 +68,6 @@ $(document).ready(function () {
                 str += '</div>';
                 return str;
             }
-
         }
     };
 
@@ -93,7 +94,7 @@ $(document).ready(function () {
                     that.view.createCards(data);
                 },
                 error: function error(request, status, error) {
-                    console.log(request.responseText);
+                    that.view.showError();
                 }
             });
         }
