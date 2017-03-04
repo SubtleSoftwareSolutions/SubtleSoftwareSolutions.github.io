@@ -32,7 +32,7 @@ $(document).ready(function () {
     }
     View.prototype = {
         createOneCard: function(onePartData) {
-            var htmlCard = '<div class="card"><div class="card-block"><a href="' + onePartData.url + '" target="_blank"><h4 class="card-title">' + onePartData.name + '</h4></a><p class="card-text">' + onePartData.description + '</p></div></div>';
+            var htmlCard = '<div class="card"><div class="card-block"><a href="' + onePartData.html_url + '" target="_blank"><h4 class="card-title">' + onePartData.name + '</h4></a><p class="card-text">' + onePartData.description + '</p></div></div>';
             return htmlCard;
         },
         createCards: function(json) {

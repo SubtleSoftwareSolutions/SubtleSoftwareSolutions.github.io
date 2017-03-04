@@ -1,14 +1,20 @@
-$padding-first: 300px;
-$about-i-size: 80px;
-$about-font-size: 18px;
+$padding-first: 400px;
 $space-between-sections: 180px;
 $bs-gray: #373a3c;
+$about-font-size: 22px;
+
+@mixin setPaddingForHeaderSection() {
+    $h-padding-top: 40px;
+    padding-top: $h-padding-top;
+    padding-bottom: $h-padding-top /2;
+}
 
 html, body {
     width: 100%;
     height: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size: $about-font-size;
+    font-weight: 300;
 }
 
 /*HELPERS*/
@@ -60,43 +66,58 @@ main {
         padding-top: $padding-first;
         padding-bottom: $padding-first;
     }
-
     #about-us {
+        $about-i-size: 80px;
         font-size: $about-font-size;
-        line-height: 180%;
+        line-height: 200%;
         i {
             font-size: $about-i-size;
             padding-bottom: $about-i-size/2;
             padding-top: $about-i-size/2;
         }
+        h3 {
+            margin-bottom: $about-font-size * 2;
+        }
     }
-
     #projects {
         $margins: $space-between-sections;
         margin-top: $margins;
         margin-bottom: $margins;
-        h2 {
-
-        }
     }
     .author {
-        $padding: 40px;
-        padding-top: $padding;
-        padding-bottom: $padding;
-        border-bottom: 1px solid #fff;
+       @include setPaddingForHeaderSection();
     }
-
     .card-group {
         $margin: 20px;
-        margin-top: $margin;
-        margin-top: $margin;
+        .card {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 0;
+            a {
+                color: #fff;
+                &:hover,
+                &:active {
+                    color: #a4a4a4;
+                }
+                h4 {
+                    font-size: 110%;
+                }
+            }
+            .card-text {
+                color: #b4b4b4;
+                font-size: 90%;
+                font-weight: 100 !important;
+            }
+        }
     }
-
     #contact {
+        line-height: 180%;
         $margins: $space-between-sections;
         margin-top: $margins;
         margin-bottom: $margins;
-        line-height: 180%;
+        h2 {
+            @include setPaddingForHeaderSection();
+        }
     }
 }
 
@@ -112,8 +133,29 @@ footer {
 }
 
 /*MEDIA*/
-@media screen and (max-width: 576px) {
-    .card {
-        width: 100%;
+@media screen and (min-width: 991px) {
+    $space: 100px;
+    #love {
+        padding-right: $space / 2;
+    }
+    #about {
+        padding-right: $space / 2;
+        padding-right: $space / 2;
+    }
+    #we-do {
+         padding-left: $space / 2;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+@media screen and (min-width: 576px) {
+    .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 }
